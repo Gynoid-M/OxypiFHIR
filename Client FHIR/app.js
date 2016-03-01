@@ -27,7 +27,7 @@ NOTE: Of course in the future we need to encrypt this message.
 var http = require ('http');
 var body = JSON.stringify({	
 		resourceType:"Observation",
-		id: "satO2",
+		id: "satO21",
 		text: {
 			status: "generated",
 			div: "<div></div>"
@@ -100,7 +100,7 @@ var headers = {
 };
 
 var options = {
-	host: 'localhost',
+	host: '192.168.1.8',
 	path:'/fhircontroller',
 	port: 3000,
 	method: 'POST',
