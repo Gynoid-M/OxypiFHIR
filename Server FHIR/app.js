@@ -14,7 +14,7 @@ mongoose.connect('mongodb://localhost/observacion', function(err, res) {
 
 //Middlewares
 app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json());
+app.use(bodyParser.json({"type":"fhir"}));
 app.use(methodOverride());
 
 
