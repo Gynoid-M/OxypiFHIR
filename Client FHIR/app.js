@@ -1,6 +1,6 @@
 /*This is de Client FHIR for the Raspberry Pi, who will capture the oxymeter data. 
 Then, will catch the max and the min read data to send via HTTP PUT (better HTTPS, for that we need to create certificates ),
- because we are CREATEing a new resource with an asociate id
+ because we are creating (CREATE operation)  a new resource with an asociate id
 
  ---ORDER OF SECUENCE --- 
 1 - test, we will do it with HTTP PUT. 
