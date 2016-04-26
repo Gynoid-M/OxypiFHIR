@@ -23,9 +23,8 @@ exports = module.exports = function(app, mongoose) {
 		 coding:{type: Array}
 		},
 		subject: { 
-			reference: {type:String}
-			//_def: { type: mongoose.Schema.Types.ObjectId, ref: 'def' 
-			//donde 'def' es el nombre del objeto a referenciar
+			reference: { type: mongoose.Schema.Types.ObjectId, ref: 'patientSchema'}
+			
 		 },
 		effective: {type: String},
 		valueQuantity: 	{
@@ -38,7 +37,7 @@ exports = module.exports = function(app, mongoose) {
 	    coding:{type: Array}
   		},
 	  device: {
-	    reference: {type: String}
+	    reference: {type: mongoose.Schema.Types.ObjectId, ref: 'deviceSchema'}
 	  },
 	  referenceRange: [
 	    {
@@ -57,13 +56,66 @@ exports = module.exports = function(app, mongoose) {
 	    }
 	  ]
 	});
-	//var pracienteSchema = new mongoose.Schema({});
-	//var dispositivoSchema = new mongoose.Schema({});
-	/*var datosSchema = new mongoose.Schema({
-		SPO2: {type: Number},
-		RPM: {type: Number}
-	});*/
+	var patientSchema = new mongoose.Schema({
+		resourceType: {type:String},
+		id: {type: String,
+			 unique: true,
+			 index: true
+			},
+		text: {
+		status: {type: String},
+		div: {type: String},
+		},
+		identifier: {type: Array},
+		system: {type: String},
+		value: {type:String},
+		period:{type:Array},
+		assigner:{type: Array},
+		active:{type: Boolean},
+		name: {type:Array},
+		telecom:{type: Array},
+		gender:{type: String},
+		_gender:{
+			fhir_comments:{type: Array},
 
+		}
+		birthDate: {type: String},
+		_birthDate: {
+			extension:{type: Array}
+		}
+		deceasedBoolean: {type: Boolean},
+		address: {type:Array},
+		photo: {type: Image},
+		contact:{type: Array},
+		managingOrganization: {
+			reference: {type: String}
+		}
+		}
+
+
+	);
+	var deviceSchema = new mongoose.Schema({
+		resourceType: {type:String},
+		id: {type: String,
+			 unique: true,
+			 index: true
+			},
+		text: {
+			status: {type: String},
+			div: {type: String},
+		},
+		identifier: {type: Array},
+		type: {
+			coding: {type:Array},
+			text: {type: String}
+		},
+		note: {type: Array},
+		status: {type: String},
+		manufacturer: {type: String},
+		model: {type: String},
+		lotNumber: {type: String},
+		contact: {type: Array}
+	});
 	
 
 	mongoose.model('Observacion', observacionSchema);

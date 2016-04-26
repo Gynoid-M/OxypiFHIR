@@ -95,12 +95,12 @@ var body = JSON.stringify({
 	});
 //we need verifying the headers.
 var headers = {
-	'Content-Type': 'application/json',
+	'Content-Type': 'application/json+fhir',
 	'Content-Length': body.length
 };
 
 var options = {
-	host: '192.168.1.8',
+	host: 'localhost',
 	path:'/fhircontroller',
 	port: 3000,
 	method: 'POST',

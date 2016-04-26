@@ -7,8 +7,9 @@ var Observacion  = mongoose.model('Observacion');
 //POST - Create a New Observation
 exports.addObservation = function(req, res) {  
    
-    console.log('POST');
-    console.log(req.body);
+   // console.log('POST');
+    //console.log(req.body);
+    console.log(req.body.identifier);
 
     var observacion = new Observacion({
     resourceType: req.body.resourceType,
