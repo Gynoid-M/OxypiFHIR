@@ -24,10 +24,11 @@ NOTE: Of course in the future we need to encrypt this message.
 
 */
 
+//Need to add the device and patient links
 var http = require ('http');
 var body = JSON.stringify({	
 		resourceType:"Observation",
-		id: "satO21",
+		id: "satO22",
 		text: {
 			status: "generated",
 			div: "<div></div>"
@@ -95,12 +96,12 @@ var body = JSON.stringify({
 	});
 //we need verifying the headers.
 var headers = {
-	'Content-Type': 'application/json',
+	'Content-Type': 'application/json+fhir',
 	'Content-Length': body.length
 };
 
 var options = {
-	host: '192.168.1.8',
+	host: '192.168.1.12',
 	path:'/fhircontroller',
 	port: 3000,
 	method: 'POST',
