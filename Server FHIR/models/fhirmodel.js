@@ -78,14 +78,14 @@ exports = module.exports = function(app, mongoose) {
 		_gender:{
 			fhir_comments:{type: Array},
 
-		}
+		},
 		birthDate: {type: String},
 		_birthDate: {
 			extension:{type: Array}
-		}
+		},
 		deceasedBoolean: {type: Boolean},
 		address: {type:Array},
-		photo: {type: Image},
+		photo: {type: String},
 		contact:{type: Array},
 		managingOrganization: {
 			reference: {type: String}
@@ -119,6 +119,8 @@ exports = module.exports = function(app, mongoose) {
 	
 
 	mongoose.model('Observacion', observacionSchema);
+	mongoose.model('Paciente', patientSchema);
+	mongoose.model('Dispositivo',deviceSchema);
 
 // Once we have Scheme built, we connect to DB
 mongoose.connect('mongodb://localhost/observacion', function(err, res) {

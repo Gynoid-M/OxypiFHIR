@@ -41,6 +41,61 @@ exports.showObservation = function (req,res){
 	});
 }
 
+//POST - Create Patient
+exports.addPatient = function(req,res){
+   var patient = new Patient({
+    resourceType: req.body.resourceType,
+    id: req.body.id,
+    text: req.body.text,
+    identifier: req.body.identifier,
+    system: req.body.system,
+    value: req.body.value,
+    period: req.body.period,
+    effective: req.body.effective,
+    assigner: req.body.assigner,
+    active: req.body.active,
+    name: req.body.name,
+    telecom: req.body.telecom,
+    gender: req.body.gender,
+    _gender: req.body._gender,
+    birthDate: req.body.birthDate,
+    _birthDate: req.body._birthDate,
+    deceasedBoolean: req.body.deceasedBoolean,
+    address: req.body.address,
+    photo: req.body.photo,
+    contact: req.body.contact,
+    managingOrganization: req.body.managingOrganization
+
+});
+
+    patient.save(function(err, patient) {
+        if(err) return res.status(500).send( err.message);
+    res.status(200).jsonp(patient);
+    });
+}
+//POST - Create Device
+exports.addDevice = function(req,res){
+   var device = new Device({
+    resourceType: req.body.resourceType,
+    id: req.body.id,
+    text: req.body.text,
+    identifier: req.body.identifier,
+    type: req.body.type,
+    note: req.body.note,
+    status: req.body.status,
+    manufacturer: req.body.manufacturer,
+    model: req.body.model,
+    lotNumber: req.body.lotNumber,
+    contact: req.body.contact,
+    });
+    device.save(function(err, device) {
+        if(err) return res.status(500).send( err.message);
+    res.status(200).jsonp(device);
+    });
+
+}
+
+
 
 
 
