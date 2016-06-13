@@ -23,8 +23,8 @@ exports = module.exports = function(app, mongoose) {
 		 coding:{type: Array}
 		},
 		subject: { 
-			reference: { type: mongoose.Schema.Types.ObjectId, ref: 'patientSchema'}
-			
+			//reference: { type: mongoose.Schema.Types.ObjectId, ref: 'patientSchema'}
+			reference: {type: String}
 		 },
 		effective: {type: String},
 		valueQuantity: 	{
@@ -37,7 +37,8 @@ exports = module.exports = function(app, mongoose) {
 	    coding:{type: Array}
   		},
 	  device: {
-	    reference: {type: mongoose.Schema.Types.ObjectId, ref: 'deviceSchema'}
+	   // reference: {type: mongoose.Schema.Types.ObjectId, ref: 'deviceSchema'}
+	   	reference: {type: String}
 	  },
 	  referenceRange: [
 	    {
@@ -66,11 +67,7 @@ exports = module.exports = function(app, mongoose) {
 		status: {type: String},
 		div: {type: String},
 		},
-		identifier: {type: Array},
-		system: {type: String},
-		value: {type:String},
-		period:{type:Array},
-		assigner:{type: Array},
+		identifier:{type:Array},
 		active:{type: Boolean},
 		name: {type:Array},
 		telecom:{type: Array},
@@ -85,15 +82,14 @@ exports = module.exports = function(app, mongoose) {
 		},
 		deceasedBoolean: {type: Boolean},
 		address: {type:Array},
-		photo: {type: String},
+		//photo: {type: String},
 		contact:{type: Array},
-		managingOrganization: {
+		careProvider: {
+			//reference: {type: mongoose.Schema.Types.ObjectId, ref: 'practicionerSchema'}
 			reference: {type: String}
 		}
-		}
+		});
 
-
-	);
 	var deviceSchema = new mongoose.Schema({
 		resourceType: {type:String},
 		id: {type: String,
@@ -116,14 +112,40 @@ exports = module.exports = function(app, mongoose) {
 		lotNumber: {type: String},
 		contact: {type: Array}
 	});
-	
+	//We will store a physician
+	var practitionerSchema = new mongoose.Schema({
+		resourceType: {type:String},
+		id: {type: String,
+			 unique: true,
+			 index: true
+			},
+		text: {
+			status: {type: String},
+			div: {type: String},
+		},
+		identifier: {type: Array},
+		name: {
+			use: {type:String},
+			family: {type:Array},
+			given: {type:Array},
+			suffix: {type:Array},
+		},
+		telecom: {type:Array},
+		address: {type:Array},
+		gender: {type: String},
+		birthDate: {type: String},
+		practitionerRole: {type: Array},
+		speciality: {type:Array}
 
-	mongoose.model('Observacion', observacionSchema);
-	mongoose.model('Paciente', patientSchema);
-	mongoose.model('Dispositivo',deviceSchema);
+	});
+
+	mongoose.model('Observation', observacionSchema);
+	mongoose.model('Patient', patientSchema);
+	mongoose.model('Device',deviceSchema);
+	mongoose.model('Practitioner', practitionerSchema);
 
 // Once we have Scheme built, we connect to DB
-mongoose.connect('mongodb://localhost/observacion', function(err, res) {
+mongoose.connect('mongodb://localhost/fhir', function(err, res) {
   if(err) {
     console.log('ERROR: connecting to Database. ' + err);
   }

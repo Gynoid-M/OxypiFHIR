@@ -26,11 +26,9 @@ NOTE: Of course in the future we need to encrypt this message.
 
 //Need to add the device and patient links
 var http = require ('http');
-var ObservationResource = JSON.stringify
-
-		{	
+var ObservationResource = JSON.stringify ({	
 		resourceType:"Observation",
-		id: "satO22",
+		id:"satO2-4",
 		text: {
 			status: "generated",
 			div: "<div></div>"
@@ -60,7 +58,7 @@ var ObservationResource = JSON.stringify
 			},
 		effective: "" ,
 		valueQuantity: 	{
-		 value: 95,
+		 value: 99,
 		 unit: "%",
 		 system: "https://rtmms.nist.gov",
 		 code: "262688"
@@ -101,7 +99,7 @@ var headers = {
 
 var options = {
 	host: '192.168.1.12',
-	path:'/fhircontroller',
+	path:'/Observation',
 	port: 3000,
 	method: 'POST',
 	headers: headers 
